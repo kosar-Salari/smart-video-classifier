@@ -297,7 +297,8 @@ class EnhancedPipelineWorker(QRunnable):
 
             if ML_AVAILABLE and self.settings.get("use_ml", True):
                 categorizer = ProductionCategorizer(use_ml=True)
-                pred = categorizer.classify(asr["text"])
+                pred = categorizer.classify(asr["text"], segments=full_text_parts)
+
             else:
                 pred = {"label": "other", "label_fa": "سایر", "confidence": 0.1}
 
